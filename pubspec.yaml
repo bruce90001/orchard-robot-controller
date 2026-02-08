@@ -1,0 +1,48 @@
+name: orchard_robot_controller
+description: 果园机器人上位机控制软件
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # UI 组件
+  cupertino_icons: ^1.0.2
+  
+  # ROS 通信
+  web_socket_channel: ^2.4.0
+  
+  # 视频流
+  flutter_vlc_player: ^7.4.0
+  
+  # 状态管理
+  provider: ^6.1.1
+  
+  # 网络请求
+  http: ^1.1.0
+  dio: ^5.4.0
+  
+  # 权限管理
+  permission_handler: ^11.1.0
+  
+  # 设备信息
+  device_info_plus: ^9.1.1
+  
+  # 屏幕适配
+  flutter_screenutil: ^5.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/
+    - assets/icons/
