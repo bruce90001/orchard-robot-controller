@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Build Android APK Only
+name: Build Android APK
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
     - name: 检出代码
       uses: actions/checkout@v4
     
-    - name: 设置 Java 17
+    - name: 设置 Java
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
@@ -32,28 +32,25 @@ jobs:
         channel: 'stable'
         cache: true
     
-    - name: 显示环境信息
+    - name: 显示版本
       run: |
         flutter --version
-        java -version
+        flutter doctor
+    
+    - name: 清理
+      run: flutter clean
     
     - name: 获取依赖
       run: flutter pub get
     
-    - name: 构建 APK (只构建 Android，不检查其他平台)
-      run: flutter build apk --release --no-tree-shake-icons
-      env:
-        FLUTTER_BUILD_MODE: release
+    - name: 构建 APK
+      run: flutter build apk --release
     
-    - name: 显示构建结果
-      run: |
-        echo "构建完成！"
-        ls -lh build/app/outputs/flutter-apk/
+    - name: 显示结果
+      run: ls -lh build/app/outputs/flutter-apk/
     
     - name: 上传 APK
       uses: actions/upload-artifact@v4
       with:
-        name: android-release-apk
+        name: app-release
         path: build/app/outputs/flutter-apk/app-release.apk
-        if-no-files-found: error
-
